@@ -20,6 +20,7 @@ from jmbitcoin.secp256k1_deterministic import *
 from jmbitcoin.snicker import *
 from jmbitcoin.amount import *
 from jmbitcoin.bip21 import *
+from dashtx import DashMainnetParams, DashTestnetParams, DashRegtestParams
 from bitcointx import select_chain_params
 from bitcointx.core import (x, b2x, b2lx, lx, COutPoint, CTxOut, CTxIn,
                             CTxInWitness, CTxWitness, CTransaction,

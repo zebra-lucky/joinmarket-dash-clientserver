@@ -17,8 +17,9 @@ TYPE_P2PKH, TYPE_P2SH_P2WPKH, TYPE_P2WPKH, TYPE_P2SH_M_N, TYPE_TIMELOCK_P2WSH, \
 NET_MAINNET, NET_TESTNET, NET_SIGNET = range(3)
 NET_MAP = {'mainnet': NET_MAINNET, 'testnet': NET_TESTNET,
     'signet': NET_SIGNET}
-WIF_PREFIX_MAP = {'mainnet': b'\x80', 'testnet': b'\xef', 'signet': b'\xef'}
-BIP44_COIN_MAP = {'mainnet': 2**31, 'testnet': 2**31 + 1, 'signet': 2**31 + 1}
+WIF_PREFIX_MAP = {'mainnet': b'\xcc', 'testnet': b'\xef', 'signet': b'\xef'}
+BIP44_COIN_MAP = {'mainnet': 2**31 + 5, 'testnet': 2**31 + 1,
+                  'signet': 2**31 + 1}
 
 def detect_script_type(script_str):
     """ Given a scriptPubKey, decide which engine

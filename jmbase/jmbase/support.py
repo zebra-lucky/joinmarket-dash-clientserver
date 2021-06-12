@@ -13,7 +13,7 @@ JM_CORE_VERSION = '0.8.3'
 
 # global Joinmarket constants
 JM_WALLET_NAME_PREFIX = "joinmarket-wallet-"
-JM_APP_NAME = "joinmarket"
+JM_APP_NAME = "joinmarket-dash"
 
 # Exit status codes
 EXIT_SUCCESS = 0
