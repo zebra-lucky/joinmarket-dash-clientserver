@@ -6,12 +6,12 @@ from bitcointx.core import Hash160, Hash
 from bitcointx import base58
 
 # Below code ASSUMES binary inputs and compressed pubkeys
-MAINNET_PRIVATE = b'\x04\x88\xAD\xE4'
-MAINNET_PUBLIC = b'\x04\x88\xB2\x1E'
-TESTNET_PRIVATE = b'\x04\x35\x83\x94'
-TESTNET_PUBLIC = b'\x04\x35\x87\xCF'
-SIGNET_PRIVATE = b'\x04\x35\x83\x94'
-SIGNET_PUBLIC = b'\x04\x35\x87\xCF'
+MAINNET_PRIVATE = b'\x02\xfe\x52\xf8'
+MAINNET_PUBLIC = b'\x02\xfe\x52\xcc'
+TESTNET_PRIVATE = b'\x3a\x80\x61\xa0'
+TESTNET_PUBLIC = b'\x3a\x80\x58\x37'
+SIGNET_PRIVATE = b'\x3a\x80\x61\xa0'
+SIGNET_PUBLIC = b'\x3a\x80\x58\x37'
 PRIVATE = [MAINNET_PRIVATE, TESTNET_PRIVATE, SIGNET_PRIVATE]
 PUBLIC = [MAINNET_PUBLIC, TESTNET_PUBLIC, SIGNET_PUBLIC]
 

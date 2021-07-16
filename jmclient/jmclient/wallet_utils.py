@@ -215,7 +215,7 @@ class WalletViewBranch(WalletViewBase):
             FidelityBondMixin.BIP32_BURN_ID]
         self.address_type = address_type
         if xpub:
-            assert xpub.startswith('xpub') or xpub.startswith('tpub')
+            assert xpub.startswith('drkp') or xpub.startswith('DRKP')
         self.xpub = xpub if xpub else ""
         self.branchentries = branchentries
 

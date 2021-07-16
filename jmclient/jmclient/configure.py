@@ -713,20 +713,20 @@ def get_blockchain_interface_instance(_config):
         if source == 'bitcoin-rpc': #pragma: no cover
             bc_interface = BitcoinCoreInterface(rpc, network)
             if testnet:
-                btc.select_chain_params("bitcoin/testnet")
+                btc.select_chain_params("dash/testnet")
             else:
-                btc.select_chain_params("bitcoin")
+                btc.select_chain_params("dash")
         elif source == 'regtest':
             bc_interface = RegtestBitcoinCoreInterface(rpc)
-            btc.select_chain_params("bitcoin/regtest")
+            btc.select_chain_params("dash/regtest")
         elif source == "bitcoin-rpc-no-history":
             bc_interface = BitcoinCoreNoHistoryInterface(rpc, network)
             if testnet or network == "regtest":
                 # in tests, for bech32 regtest addresses, for bc-no-history,
                 # this will have to be reset manually:
-                btc.select_chain_params("bitcoin/testnet")
+                btc.select_chain_params("dash/testnet")
             else:
-                btc.select_chain_params("bitcoin")
+                btc.select_chain_params("dash")
         else:
             assert 0
     elif source == 'electrum':
