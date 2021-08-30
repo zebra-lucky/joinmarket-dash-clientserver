@@ -8,6 +8,9 @@ from bitcointx.core import Hash
 from bitcointx.core.key import CKeyBase
 from bitcointx.signmessage import BitcoinMessage
 
+
+DASH_MSG_MAGIC = 'DarkCoin Signed Message:\n'
+
 #Required only for PoDLE calculation:
 N = 115792089237316195423570985008687907852837564279074904382605163141518161494337
 
@@ -88,12 +91,12 @@ def get_version_byte(s):
     return b58check_to_bin(s)[0]
 
 def ecdsa_sign(msg, priv, formsg=False):
-    hashed_msg = BitcoinMessage(msg).GetHash()
+    hashed_msg = BitcoinMessage(msg, magic=DASH_MSG_MAGIC).GetHash()
     sig = ecdsa_raw_sign(hashed_msg, priv, rawmsg=True, formsg=formsg)
     return base64.b64encode(sig).decode('ascii')
 
 def ecdsa_verify(msg, sig, pub):
-    hashed_msg = BitcoinMessage(msg).GetHash()
+    hashed_msg = BitcoinMessage(msg, magic=DASH_MSG_MAGIC).GetHash()
     sig = base64.b64decode(sig)
     return ecdsa_raw_verify(hashed_msg, pub, sig, rawmsg=True)
 
