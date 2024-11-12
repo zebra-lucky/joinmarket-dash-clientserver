@@ -53,3 +53,12 @@ cp contrib/build-linux/pyinstaller-build/joinmarket-clientserver.spec .
 pyinstaller -y joinmarket-clientserver.spec
 
 ls -l dist/joinmarket-clientserver/
+
+cd dist
+
+mv joinmarket-clientserver joinmarket-clientserver-${JM_VERSION}
+
+tar -czvf joinmarket-clientserver-${JM_VERSION}.tgz \
+          joinmarket-clientserver-${JM_VERSION}
+
+ls -l

@@ -38,15 +38,22 @@ jobs:
     runs-on: ubuntu-20.04
     name: create PyInstaller build
     steps:
+      - name: Set outputs for pkg_ver
+        id: set_vars
+        run: |
+          export JM_VERSION=${{ github.ref }}
+          echo "::set-output name=pkg_ver::$(echo $JM_VERSION)"
       - name: Checkout
         uses: actions/checkout@v1
       - name: build
         run: |
           ./contrib/build-linux/pyinstaller-build/build.sh
-      - name: rename dir
-        id: rename_dir
-        run: |
-          cd dist && |
-          mv joinmarket-clientserver joinmarket-clientserver-${{ github.ref }}|
-          && tar -czvf joinmarket-clientserver-${{ github.ref }}.tgz|
-          && joinmarket-clientserver-${{ github.ref }} && ls -la
+      - name: Upload sdist Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: dist/joinmarket-clientserver-{{ steps.set_vars.outputs.pkg_ver }}.tar.gz
+          asset_name: joinmarket-clientserver-${{ github.ref_name }}.tar.gz
+          asset_content_type: application/octet-stream
