@@ -56,6 +56,8 @@ ls -l dist/joinmarket-clientserver/
 
 cd dist
 
+export JM_VERSION="${JM_VERSION:10}"
+
 mv joinmarket-clientserver joinmarket-clientserver-${JM_VERSION}
 
 tar -czvf joinmarket-clientserver-${JM_VERSION}.tgz \
