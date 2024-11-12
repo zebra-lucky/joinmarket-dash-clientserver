@@ -13,11 +13,11 @@ binaries += [(f'{PROJECT_ROOT}/jmvenv/lib/lib*', '.')]
 
 
 datas = []
-datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.9/site-packages/'
+datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.8/site-packages/'
            f'twisted/plugins/dropin.cache','twisted/plugins')]
-datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.9/site-packages/'
+datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.8/site-packages/'
            f'twisted/plugins/__init__.py', 'twisted/plugins')]
-datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.9/site-packages/'
+datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.8/site-packages/'
            f'twisted/plugins/txtorcon_endpoint_parser.py', 'twisted/plugins')]
 
 

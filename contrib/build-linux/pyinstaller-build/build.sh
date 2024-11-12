@@ -10,7 +10,7 @@ sudo apt-get install -y python3-dev python3-pip python3-venv git \
     build-essential automake pkg-config libtool libffi-dev libssl-dev
 
 
-python3.9 -m venv $VENVPATH
+python3.8 -m venv $VENVPATH
 
 
 . $VENVPATH/bin/activate
