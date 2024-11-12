@@ -37,8 +37,6 @@ make check
 make install
 cd ../..
 
-exit 0
-
 
 rm -rf libsodium
 git clone https://github.com/jedisct1/libsodium.git
