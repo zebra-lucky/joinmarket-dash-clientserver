@@ -47,5 +47,6 @@ jobs:
         id: rename_dir
         run: |
           cd dist && |
-          mv joinmarket-clientserver joinmarket-clientserver-${{ github.ref }}
-          tar -czvf joinmarket-clientserver-${{ github.ref }}.tgz
+          mv joinmarket-clientserver joinmarket-clientserver-${{ github.ref }}|
+          && tar -czvf joinmarket-clientserver-${{ github.ref }}.tgz|
+          && joinmarket-clientserver-${{ github.ref }} && ls -la
