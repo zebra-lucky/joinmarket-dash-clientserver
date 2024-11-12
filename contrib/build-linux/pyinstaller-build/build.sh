@@ -3,21 +3,25 @@
 set -e
 
 PROJECT_ROOT="$(dirname "$(readlink -e "$0")")/../../.."
-VENVPATH=$PROJECT_ROOT/venv
+VENVPATH=$PROJECT_ROOT/jmvenv
 JM_ROOT=$PROJECT_ROOT
 
+sudo apt-get install -y python3-dev python3-pip python3-venv git \
+    build-essential automake pkg-config libtool libffi-dev libssl-dev
 
-sudo apt-get install python3-dev python3-pip python3-venv git build-essential automake pkg-config libtool libffi-dev libssl-dev
 
-
-python3.8 -m venv $VENVPATH
+python3.9 -m venv $VENVPATH
 
 
 . $VENVPATH/bin/activate
 
 
 pip install .[gui]
+pip install pyinstaller==6.11.1
 
+# need to regenerate twisted/plugins/dropin.cache
+python -c \
+    'from twisted.plugin import IPlugin, getPlugins; list(getPlugins(IPlugin))'
 
 rm -rf deps
 mkdir -p deps
@@ -26,7 +30,8 @@ git clone https://github.com/bitcoin-core/secp256k1.git
 cd secp256k1
 git checkout v0.6.0
 ./autogen.sh
-./configure --prefix $JM_ROOT --enable-module-recovery --enable-experimental --enable-module-ecdh --enable-benchmark=no
+./configure --prefix $VENVPATH --enable-module-recovery \
+    --enable-experimental --enable-module-ecdh --enable-benchmark=no
 make
 make check
 make install
@@ -40,7 +45,13 @@ git clone https://github.com/jedisct1/libsodium.git
 cd libsodium
 git checkout 1.0.18-RELEASE
 ./autogen.sh
-./configure --prefix $JM_ROOT
+./configure --prefix $VENVPATH
 make check
 sudo make install
 cd ..
+
+cp contrib/build-linux/pyinstaller-build/joinmarket-clientserver.spec .
+
+pyinstaller -y joinmarket-clientserver.spec
+
+ls -l dist/joinmarket-clientserver/

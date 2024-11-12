@@ -1,193 +1,92 @@
 # -*- mode: python; coding: utf-8 -*-
 
+import itertools
+import os
+from pathlib import Path
 
-a = Analysis(
-    [
-        'scripts/add-utxo.py',
-        'scripts/bond-calculator.py',
-        'scripts/bumpfee.py',
-        'scripts/genwallet.py',
-        'scripts/jmwalletd.py',
-        'scripts/joinmarketd.py',
-        'scripts/joinmarket-qt.py',
-        'scripts/receive-payjoin.py',
-        'scripts/sendpayment.py',
-        'scripts/sendtomany.py',
-        'scripts/start-dn.py',
-        'scripts/tumbler.py',
-        'scripts/wallet-tool.py',
-        'scripts/yg-privacyenhanced.py',
-        'scripts/yield-generator-basic.py',
-    ],
-    pathex=[],
-    binaries=[],
-    datas=[],
-    hiddenimports=[],
-    hookspath=[],
-    hooksconfig={},
-    runtime_hooks=[],
-    excludes=[],
-    noarchive=False,
-    optimize=0,
-)
 
-pyz = PYZ(a.pure)
+PROJECT_ROOT = os.path.abspath('.')
 
-add_utxo_exe = EXE(
-    pyz, a.scripts, [],
-    name='add-utxo',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
 
-bond_calculator_exe = EXE(
-    pyz, a.scripts, [],
-    name='bond-calculator',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+binaries = []
+binaries += [(f'{PROJECT_ROOT}/jmvenv/lib/lib*', '.')]
 
-bumpfee_exe = EXE(
-    pyz, a.scripts, [],
-    name='bumpfee',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
 
-genwallet_exe = EXE(
-    pyz, a.scripts, [],
-    name='genwallet',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+datas = []
+datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.9/site-packages/'
+           f'twisted/plugins/dropin.cache','twisted/plugins')]
+datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.9/site-packages/'
+           f'twisted/plugins/__init__.py', 'twisted/plugins')]
+datas += [(f'{PROJECT_ROOT}/jmvenv/lib/python3.9/site-packages/'
+           f'twisted/plugins/txtorcon_endpoint_parser.py', 'twisted/plugins')]
 
-jmwalletd_exe = EXE(
-    pyz, a.scripts, [],
-    name='jmwalletd',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
 
-joinmarketd_exe = EXE(
-    pyz, a.scripts, [],
-    name='joinmarketd',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+scripts = [
+    # 'scripts/add-utxo.py',
+    # 'scripts/bond-calculator.py',
+    # 'scripts/bumpfee.py',
+    # 'scripts/genwallet.py',
+    # 'scripts/jmwalletd.py',
+    # 'scripts/joinmarketd.py',
+    # 'scripts/joinmarket-qt.py',
+    # 'scripts/receive-payjoin.py',
+    # 'scripts/sendpayment.py',
+    # 'scripts/sendtomany.py',
+    'scripts/start-dn.py',
+    # 'scripts/tumbler.py',
+    #'scripts/wallet-tool.py',
+    # 'scripts/yg-privacyenhanced.py',
+    #'scripts/yield-generator-basic.py',
+]
 
-joinmarket_qt_exe = EXE(
-    pyz, a.scripts, [],
-    name='joinmarket-qt',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
 
-receive_payjoin_exe = EXE(
-    pyz, a.scripts, [],
-    name='receive-payjoin',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+hiddenimports = [
+    'chromalog.mark.helpers',
+    'chromalog.mark.helpers.simple',
+    'twisted.plugins',
+#    'twisted.plugins.autobahn_endpoints',
+#    'twisted.plugins.autobahn_twistd',
+    'twisted.plugins.txtorcon_endpoint_parser',
+]
 
-sendpayment_exe = EXE(
-    pyz, a.scripts, [],
-    name='sendpayment',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
 
-sendtomany_exe = EXE(
-    pyz, a.scripts, [],
-    name='sendtomany',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+a = {}
+pyz = {}
+exe = {}
 
-start_dn_exe = EXE(
-    pyz, a.scripts, [],
-    name='start-dn',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
 
-tumbler_exe = EXE(
-    pyz, a.scripts, [],
-    name='tumbler',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+for s in scripts:
+    a[s] = Analysis(
+        [s],
+        pathex=[],
+        binaries=binaries,
+        datas=datas,
+        hiddenimports=hiddenimports,
+        hookspath=[],
+        hooksconfig={},
+        runtime_hooks=[],
+        excludes=[],
+        noarchive=False,
+        optimize=0,
+    )
 
-wallet_tool_exe = EXE(
-    pyz, a.scripts, [],
-    name='wallet-tool',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+    pyz[s] = PYZ(a[s].pure)
 
-yg_privacyenhanced_exe = EXE(
-    pyz, a.scripts, [],
-    name='yg-privacyenhanced',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
-
-yield_generator_basic_exe = EXE(
-    pyz, a.scripts, [],
-    name='yield-generator-basic',
-    exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
-    strip=False, upx=True, console=True, disable_windowed_traceback=False,
-    argv_emulation=False, target_arch=None, codesign_identity=None,
-    entitlements_file=None,
-)
+    exe[s] = EXE(
+        pyz[s], a[s].scripts, [],
+        name=Path(s).stem,
+        exclude_binaries=True, debug=False, bootloader_ignore_signals=False,
+        strip=False, upx=True, console=True, disable_windowed_traceback=False,
+        argv_emulation=False, target_arch=None, codesign_identity=None,
+        entitlements_file=None,
+    )
 
 coll = COLLECT(
-    add_utxo_exe,
-    bond_calculator_exe,
-    bumpfee_exe,
-    genwallet_exe,
-    jmwalletd_exe,
-    joinmarketd_exe,
-    joinmarket_qt_exe,
-    receive_payjoin_exe,
-    sendpayment_exe,
-    sendtomany_exe,
-    start_dn_exe,
-    tumbler_exe,
-    wallet_tool_exe,
-    yg_privacyenhanced_exe,
-    yield_generator_basic_exe,
-    a.binaries,
-    a.datas,
+    *list(exe.values()),
+    list(set(itertools.chain.from_iterable(b.binaries for b in a.values()))),
+    list(set(itertools.chain.from_iterable(d.datas for d in a.values()))),
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='start-dn',
+    name='joinmarket-clientserver',
 )
