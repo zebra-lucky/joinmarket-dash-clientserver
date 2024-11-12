@@ -43,3 +43,9 @@ jobs:
       - name: build
         run: |
           ./contrib/build-linux/pyinstaller-build/build.sh
+      - name: rename dir
+        id: rename_dir
+        run: |
+          cd dist && |
+          mv joinmarket-clientserver joinmarket-clientserver-${{ github.ref }}
+          tar -czvf joinmarket-clientserver-${{ github.ref }}.tgz
