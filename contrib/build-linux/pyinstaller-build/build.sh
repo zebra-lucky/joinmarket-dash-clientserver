@@ -56,7 +56,7 @@ ls -l dist/joinmarket-clientserver/
 
 cd dist
 
-export JM_VERSION="${JM_VERSION:10}"
+export JM_VERSION="${JM_VERSION}"
 
 mv joinmarket-clientserver joinmarket-clientserver-${JM_VERSION}
 
