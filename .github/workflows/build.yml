@@ -55,7 +55,6 @@ jobs:
         env:
           JM_VERSION: ${{ github.ref_name }}
         with:
-        env:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: dist/joinmarket-clientserver-${{ JM_VERSION }}.tar.gz
           asset_name: joinmarket-clientserver-${{ JM_VERSION }}.tar.gz
