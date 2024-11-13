@@ -53,9 +53,10 @@ jobs:
       - name: Upload sdist Asset
         uses: actions/upload-release-asset@v1
         env:
-          JM_VERSION: ${{ github.ref}}
+          JM_VERSION: ${{ github.ref:10 }}
         with:
+        env:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_path: dist/joinmarket-clientserver-${{ steps.set_vars.outputs.pkg_ver }}.tar.gz
-          asset_name: joinmarket-clientserver-${{ github.ref_name }}.tar.gz
+          asset_path: dist/joinmarket-clientserver-${{ JM_VERSION }}.tar.gz
+          asset_name: joinmarket-clientserver-${{ JM_VERSION }}.tar.gz
           asset_content_type: application/octet-stream
