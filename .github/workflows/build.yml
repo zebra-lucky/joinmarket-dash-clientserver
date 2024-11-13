@@ -56,6 +56,6 @@ jobs:
           JM_VERSION: ${{ github.ref}}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_path: dist/joinmarket-clientserver-{{ steps.set_vars.outputs.pkg_ver }}.tar.gz
+          asset_path: dist/joinmarket-clientserver-${{ steps.set_vars.outputs.pkg_ver }}.tar.gz
           asset_name: joinmarket-clientserver-${{ github.ref_name }}.tar.gz
           asset_content_type: application/octet-stream
