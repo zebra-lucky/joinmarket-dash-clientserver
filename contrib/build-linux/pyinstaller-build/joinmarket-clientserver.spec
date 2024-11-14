@@ -36,7 +36,7 @@ scripts = [
     'scripts/tumbler.py',
     'scripts/wallet-tool.py',
     'scripts/yg-privacyenhanced.py',
-    scripts/yield-generator-basic.py',
+    'scripts/yield-generator-basic.py',
 ]
 
 
